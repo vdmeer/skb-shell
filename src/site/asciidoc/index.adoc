@@ -1,0 +1,8 @@
+== Introduction
+
+A collection of simple implementations for shell applications.
+
+
+include::{basedir}/bundle/doc-fragments/resources.adoc[leveloffset=+1]
+
+

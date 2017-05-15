@@ -1,0 +1,75 @@
+
+:release-version: 0.0.1
+:java: 8
+= SKB Shell
+v{release-version}
+:page-layout: base
+:toc: preamble
+
+
+
+[%autowidth, frame=none, grid=none, cols="a,a,a,a,a"]
+|===
+
+|[link=https://search.maven.org/#search\|gav\|1\|g%3A%22de.vandermeer%22%20AND%20a%3A%22skb-shell%22]
+image::https://img.shields.io/maven-central/v/de.vandermeer/skb-shell.svg[Maven Central]
+|[link=https://github.com/vdmeer/skb-shell]
+image::https://img.shields.io/github/tag/vdmeer/skb-shell.svg[GitHub Tags]
+|image::https://img.shields.io/badge/license-Apache_2.0-blue.svg[License]
+|image::https://img.shields.io/badge/java-Java_{java}+-blue.svg[License]
+|image::https://img.shields.io/github/issues/vdmeer/skb-shell.svg[test]
+
+|===
+
+
+//|[link=http://www.vandermeer.de/projects/skb/java/skb-shell/]
+//image::https://img.shields.io/website/http/www.vandermeer.de/projects/skb/java/skb-shell/index.html.svg[Website]
+
+
+//[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.apache.commons/commons-lang3/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.apache.commons/commons-lang3/)
+
+
+//[![License](https://img.shields.io/badge/license-Apache2-blue.svg)]
+
+
+
+A collection of simple implementations for shell applications.
+
+
+== Resources
+
+The current version of SKB-Shell is *{release-version}*.
+
+SKB-Shell has its own home page with full documentation, including a user guide.
+The source code is hosted on Github, along with issue and feedback managements.
+Distributions are published on Maven (for JAR artifacts).
+
+[role="table table-striped", frame=topbot, grid=rows, cols="1,5"]
+|===
+
+|Home page
+|http://www.vandermeer.de/projects/skb/java/skb-shell[site], 
+http://www.vandermeer.de/projects/skb/java/skb-shell/user-guide.html[user-guide], 
+http://www.vandermeer.de/projects/skb/java/skb-shell/apidocs[JAVA API Doc]
+
+|Source (Github)
+|https://github.com/vdmeer/skb-shell/tree/master[source], 
+https://github.com/vdmeer/skb-shell/issues[issues]
+
+|JARs (Maven)
+|https://search.maven.org/#artifactdetails\|de.vandermeer\|skb-shell\|{release-version}\|jar[v{release-version}], 
+https://search.maven.org/#search\|gav\|1\|g%3A%22de.vandermeer%22%20AND%20a%3A%skb-shell%22[all releases]
+
+|===
+
+
+== The Problem
+
+
+== This Solution
+
+
+== Provided Functionality
+
+
+
