@@ -1,0 +1,11 @@
+//**
+//** Waits 100ms, prints help, waits another 100ms, prints help for wait
+//**
+
+wait 500
+
+help
+
+wait 1000
+
+help wait

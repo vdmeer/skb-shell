@@ -15,9 +15,23 @@
 
 package de.vandermeer.shell.commands.standard;
 
+import java.io.File;
+
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+
 import de.vandermeer.shell.commands.AbstractLongTypedArg;
 import de.vandermeer.shell.commands.AbstractLongTypedCmd;
+import de.vandermeer.skb.interfaces.MessageType;
+import de.vandermeer.skb.interfaces.console.MessageConsole;
+import de.vandermeer.skb.interfaces.fidibus.FileSystemFilters;
+import de.vandermeer.skb.interfaces.fidibus.directories.APIOWalker;
+import de.vandermeer.skb.interfaces.fidibus.files.FileSource;
+import de.vandermeer.skb.interfaces.fidibus.files.StringFileLoader;
+import de.vandermeer.skb.interfaces.render.DoesRender;
 import de.vandermeer.skb.interfaces.shell.CmdCategory;
+import de.vandermeer.skb.interfaces.shell.IsSetShell;
 import de.vandermeer.skb.interfaces.shell.LongTypedArgument;
 
 /**
@@ -29,17 +43,30 @@ import de.vandermeer.skb.interfaces.shell.LongTypedArgument;
  */
 public class Cmd_Script extends AbstractLongTypedCmd {
 
+	/** Extension for script files. */
+	public static final String SCRIPT_FILE_EXTENSION = "ssc";
+
+	/** A documentation comment in a script, similar to a Javadoc comments. */
+	public static final String SCRIPT_DOC_COMMENT = "//**";
+
 	/** The action argument. */
-	public static final LongTypedArgument<String> action = AbstractLongTypedArg.asString("action", "Action", "The requested action for script");
+	public static final LongTypedArgument<String> action = AbstractLongTypedArg.asString("action", "Action", "The requested action for script, one of: ls, info, run");
 
 	/** The action-arg argument. */
-	public static final LongTypedArgument<String> actionArg = AbstractLongTypedArg.asString("action-arg", "Action argument", "The argument for the script action, depends on the action");
+	public static final LongTypedArgument<String> actionArg = AbstractLongTypedArg.asString("action-arg", "Action argument", "The argument for the script action: <directory> for ls, <filename> for run and info");
+
+	/** A shell to run commands in. */
+	private final IsSetShell shell;
+
+	/** Last script run by the shell. */
+	protected String lastScript;
 
 	/**
 	 * Creates a new command.
 	 * @param category the command category, must not be null
+	 * @param shell a shell to run a command, must not be null
 	 */
-	public Cmd_Script(CmdCategory category) {
+	public Cmd_Script(CmdCategory category, IsSetShell shell) {
 		super(
 				"script",
 				"Script",
@@ -47,47 +74,96 @@ public class Cmd_Script extends AbstractLongTypedCmd {
 				category,
 				new LongTypedArgument<?>[]{action, actionArg}
 		);
+		Validate.notNull(shell);
+		this.shell = shell;
 	}
 
 	@Override
 	public int executeCommand() {
 		switch(action.getValue()){
 			case "ls":
-				this.doLs(actionArg.getValue());
-				break;
+				return this.doLs(actionArg.getValue());
 			case "info":
-				this.doInfo(actionArg.getValue());
-				break;
+				return this.doInfo(actionArg.getValue());
 			case "run":
-				this.doRun(actionArg.getValue());
-				break;
+				return this.doRun(actionArg.getValue());
 			default:
 				throw new IllegalStateException("unknown action <" + action.getValue() + "> in command <" + this.getName() + ">");
+		}
+	}
+
+	/**
+	 * Lists all scripts in a directory.
+	 * @param dirname the directory name
+	 * @return 0 on success, -1 on error
+	 */
+	protected int doLs(String dirname){
+		APIOWalker walker = APIOWalker.create(
+				dirname,
+				DirectoryFileFilter.INSTANCE,
+				FileSystemFilters.WILDECARD(SCRIPT_FILE_EXTENSION)
+		);
+		if(walker.hasErrors()){
+			for(DoesRender error : walker.getErrorSet().getMessages()){
+				MessageConsole.con(MessageType.ERROR, error);
+			}
+			return -1;
+		}
+		for(FileSource source : walker.read()){
+			source.validateSource();
+			MessageConsole.con(MessageType.INFO, "script file - <{}{}{}>", source.fnPath(dirname), File.separator, source.fnBasename());
 		}
 		return 0;
 	}
 
 	/**
-	 * Lists all scripts in a directory
-	 * @param dirname the directory name
-	 */
-	protected void doLs(String dirname){
-		System.out.println("ls: " + dirname);//TODO
-	}
-
-	/**
 	 * Prints information about a script if available.
 	 * @param filename the script filename
+	 * @return 0 on success, -1 on error
 	 */
-	protected void doInfo(String filename){
-		System.out.println("info: " + filename);//TODO
+	protected int doInfo(String filename){
+		filename = (filename.endsWith(SCRIPT_FILE_EXTENSION))?filename:filename + "." + SCRIPT_FILE_EXTENSION;
+		StringFileLoader loader = StringFileLoader.create(filename);
+		if(loader.hasErrors()){
+			for(DoesRender error : loader.getErrorSet().getMessages()){
+				MessageConsole.con(MessageType.ERROR, error);
+			}
+			return -1;
+		}
+
+		for(String s : loader.read()){
+			if(s.startsWith(SCRIPT_DOC_COMMENT)){
+				MessageConsole.con(MessageType.INFO, StringUtils.substringAfter(s, SCRIPT_DOC_COMMENT));
+			}
+		}
+		return 0;
 	}
 
 	/**
 	 * Runs a script.
 	 * @param filename the script filename
+	 * @return 0 on success, -1 on error
 	 */
-	protected void doRun(String filename){
-		System.out.println("run: " + filename);//TODO
+	protected int doRun(String filename){
+		if(filename.equals(".") && this.lastScript!=null){
+			filename = this.lastScript;
+		}
+		filename = (filename.endsWith(SCRIPT_FILE_EXTENSION))?filename:filename + "." + SCRIPT_FILE_EXTENSION;
+		StringFileLoader loader = StringFileLoader.create(filename);
+		if(loader.hasErrors()){
+			for(DoesRender error : loader.getErrorSet().getMessages()){
+				MessageConsole.con(MessageType.ERROR, error);
+			}
+			return -1;
+		}
+
+		for(String string : loader.read()){
+			if(!string.startsWith(SCRIPT_DOC_COMMENT) && !StringUtils.isBlank(string)){
+				MessageConsole.con(MessageType.TRACE, ".");
+				this.shell.runCommand(string);
+			}
+		}
+		this.lastScript = filename;//TODO not used yet
+		return 0;
 	}
 }

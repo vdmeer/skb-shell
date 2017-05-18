@@ -16,6 +16,8 @@
 package de.vandermeer.shell.commands.standard;
 
 import de.vandermeer.shell.commands.AbstractTypedCmdInteger;
+import de.vandermeer.skb.interfaces.MessageType;
+import de.vandermeer.skb.interfaces.console.MessageConsole;
 import de.vandermeer.skb.interfaces.shell.CmdCategory;
 
 /**
@@ -49,11 +51,11 @@ public class Cmd_Wait extends AbstractTypedCmdInteger {
 	@Override
 	public int executeCommand() {
 		if(this.getValue()==null){
-			//TODO exception
+			MessageConsole.con(MessageType.ERROR, "wait value was null");
 			return -3;
 		}
 		if(this.getValue()<1){
-			//TODO exception
+			MessageConsole.con(MessageType.ERROR, "wait value was less than 1");
 			return -2;
 		}
 		try{
