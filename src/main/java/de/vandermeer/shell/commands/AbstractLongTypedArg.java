@@ -40,6 +40,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param name the argument name, must not be blank
 	 * @param displayName the argument display name for help, must not be blank
 	 * @param description the argument description, must not be blank
+	 * @return new argument
 	 */
 	public static LongTypedArgument<Boolean> asBoolean(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<Boolean>(name, displayName, description) {
@@ -64,6 +65,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param name the argument name, must not be blank
 	 * @param displayName the argument display name for help, must not be blank
 	 * @param description the argument description, must not be blank
+	 * @return new argument
 	 */
 	public static LongTypedArgument<Character> asCharacter(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<Character>(name, displayName, description) {
@@ -88,6 +90,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param name the argument name, must not be blank
 	 * @param displayName the argument display name for help, must not be blank
 	 * @param description the argument description, must not be blank
+	 * @return new argument
 	 */
 	public static LongTypedArgument<Double> asDouble(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<Double>(name, displayName, description) {
@@ -112,6 +115,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param name the argument name, must not be blank
 	 * @param displayName the argument display name for help, must not be blank
 	 * @param description the argument description, must not be blank
+	 * @return new argument
 	 */
 	public static LongTypedArgument<Integer> asInteger(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<Integer>(name, displayName, description) {
@@ -136,6 +140,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param name the argument name, must not be blank
 	 * @param displayName the argument display name for help, must not be blank
 	 * @param description the argument description, must not be blank
+	 * @return new argument
 	 */
 	public static LongTypedArgument<String> asString(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<String>(name, displayName, description) {
@@ -162,6 +167,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param name the argument name, must not be blank
 	 * @param displayName the argument display name for help, must not be blank
 	 * @param description the argument description, must not be blank
+	 * @return new argument
 	 */
 	public static LongTypedArgument<List<String>> asStringList(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<List<String>>(name, displayName, description) {
@@ -194,6 +200,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param name the argument name, must not be blank
 	 * @param displayName the argument display name for help, must not be blank
 	 * @param description the argument description, must not be blank
+	 * @return new argument
 	 */
 	public static LongTypedArgument<List<Integer>> asIntegerList(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<List<Integer>>(name, displayName, description) {
