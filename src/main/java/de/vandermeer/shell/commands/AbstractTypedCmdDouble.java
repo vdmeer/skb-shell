@@ -39,10 +39,11 @@ public abstract class AbstractTypedCmdDouble extends AbstractTypedCmd<Double> {
 	 * @param category the command category, must not be null
 	 * @param argumentName a display name for the argument, must not be blank
 	 * @param argumentDescription a description of the argument, must not be blank
+	 * @param argRequired true if argument is required, false otherwise
 	 * @param defaultValue command default value, null or blank if not required
 	 */
-	protected AbstractTypedCmdDouble(String name, String displayName, String description, CmdCategory category, String argumentName, String argumentDescription, Double defaultValue) {
-		super(name, displayName, description, category, argumentName, argumentDescription, defaultValue);
+	protected AbstractTypedCmdDouble(String name, String displayName, String description, CmdCategory category, String argumentName, String argumentDescription, boolean argRequired, Double defaultValue) {
+		super(name, displayName, description, category, argumentName, argumentDescription, argRequired, defaultValue);
 	}
 
 	@Override
@@ -61,4 +62,8 @@ public abstract class AbstractTypedCmdDouble extends AbstractTypedCmd<Double> {
 		return null;
 	}
 
+	@Override
+	public String valueType(){
+		return "Double";
+	}
 }

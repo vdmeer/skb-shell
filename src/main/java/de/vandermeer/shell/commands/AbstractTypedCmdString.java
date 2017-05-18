@@ -38,10 +38,11 @@ public abstract class AbstractTypedCmdString extends AbstractTypedCmd<String> {
 	 * @param category the command category, must not be null
 	 * @param argumentName a display name for the argument, must not be blank
 	 * @param argumentDescription a description of the argument, must not be blank
+	 * @param argRequired true if argument is required, false otherwise
 	 * @param defaultValue command default value, null or blank if not required
 	 */
-	protected AbstractTypedCmdString(String name, String displayName, String description, CmdCategory category, String argumentName, String argumentDescription, String defaultValue) {
-		super(name, displayName, description, category, argumentName, argumentDescription, defaultValue);
+	protected AbstractTypedCmdString(String name, String displayName, String description, CmdCategory category, String argumentName, String argumentDescription, boolean argRequired, String defaultValue) {
+		super(name, displayName, description, category, argumentName, argumentDescription, argRequired, defaultValue);
 	}
 
 	@Override
@@ -55,4 +56,8 @@ public abstract class AbstractTypedCmdString extends AbstractTypedCmd<String> {
 		return null;
 	}
 
+	@Override
+	public String valueType(){
+		return "String";
+	}
 }

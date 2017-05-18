@@ -41,6 +41,9 @@ public abstract class AbstractTypedCmd<T> extends AbstractCmd implements TypedCm
 	/** Argument value from command line. */
 	protected T commandValue;
 
+	/** Flag for required argument. */
+	protected final boolean argRequired;
+
 	/**
 	 * Creates a new typed command.
 	 * @param name the command name, must not be blank
@@ -49,9 +52,10 @@ public abstract class AbstractTypedCmd<T> extends AbstractCmd implements TypedCm
 	 * @param category a category, must not be null
 	 * @param argumentName a name for the argument, must not be blank
 	 * @param argumentDescription a description for the argument, must not be blank
+	 * @param argRequired true if argument is required, false otherwise
 	 * @param defaultValue a default value, null if not required
 	 */
-	protected AbstractTypedCmd(final String name, final String displayName, final String description, final CmdCategory category, final String argumentName, final String argumentDescription, final T defaultValue) {
+	protected AbstractTypedCmd(final String name, final String displayName, final String description, final CmdCategory category, final String argumentName, final String argumentDescription, final boolean argRequired, final T defaultValue) {
 		super(name, displayName, description, category);
 
 		Validate.notBlank(argumentName);
@@ -59,6 +63,7 @@ public abstract class AbstractTypedCmd<T> extends AbstractCmd implements TypedCm
 		this.argumentName = argumentName;
 		this.argumentDescription = argumentDescription;
 		this.defaultValue = defaultValue;
+		this.argRequired = argRequired;
 	}
 
 	@Override
@@ -84,6 +89,11 @@ public abstract class AbstractTypedCmd<T> extends AbstractCmd implements TypedCm
 	@Override
 	public void resetCmdValue() {
 		this.commandValue = null;
+	}
+
+	@Override
+	public boolean argIsRequired() {
+		return this.argRequired;
 	}
 
 }

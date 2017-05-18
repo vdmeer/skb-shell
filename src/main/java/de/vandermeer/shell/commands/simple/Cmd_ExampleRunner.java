@@ -16,33 +16,49 @@
 package de.vandermeer.shell.commands.simple;
 
 import de.vandermeer.shell.commands.AbstractSimpleCmd;
+import de.vandermeer.skb.interfaces.examples.StandardExampleAsCmd;
+import de.vandermeer.skb.interfaces.examples.StandardExampleRunner;
 import de.vandermeer.skb.interfaces.shell.CmdCategory;
 
 /**
- * Command help using `?`.
+ * A command that runs an example in a shell using the standard example API.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public class SimpleQM extends AbstractSimpleCmd {
+public class Cmd_ExampleRunner extends AbstractSimpleCmd {
+
+	/** The example to run. */
+	protected final transient StandardExampleAsCmd example;
 
 	/**
 	 * Creates a new command
+	 * @param example the example to run
 	 * @param category the category.
 	 */
-	public SimpleQM(CmdCategory category) {
+	public Cmd_ExampleRunner(StandardExampleAsCmd example, CmdCategory category) {
 		super(
-				"?",
-				"Help",
-				"Prints help information for the shell",
+				example.getName(),
+				example.getDisplayName(),
+				example.getDescription(),
 				category
 		);
+		this.example = example;
+	}
+
+	@Override
+	public Object getLongDescription(){
+		return this.example.getLongDescription();
 	}
 
 	@Override
 	public int executeCommand() {
-		// TODO Auto-generated method stub
+		StandardExampleRunner ser = new StandardExampleRunner(){};
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		ser.runExampleWithCode(this.example);
 		return 0;
 	}
 

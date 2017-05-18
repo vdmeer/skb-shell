@@ -18,30 +18,30 @@ package de.vandermeer.shell.commands;
 import org.apache.commons.lang3.Validate;
 
 import de.vandermeer.skb.interfaces.shell.CmdCategory;
-import de.vandermeer.skb.interfaces.shell.ComplexArgument;
-import de.vandermeer.skb.interfaces.shell.ComplexCmd;
+import de.vandermeer.skb.interfaces.shell.LongTypedArgument;
+import de.vandermeer.skb.interfaces.shell.LongTypedCmd;
 
 /**
- * Base for a complex command.
+ * Base for a long typed command.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class AbstractComplexCmd extends AbstractCmd implements ComplexCmd {
+public abstract class AbstractLongTypedCmd extends AbstractCmd implements LongTypedCmd {
 
 	/** The arguments of the command. */
-	protected final transient ComplexArgument<?>[] arguments;
+	protected final transient LongTypedArgument<?>[] arguments;
 
 	/**
-	 * Creates a new complex command.
+	 * Creates a new long typed command.
 	 * @param name the command name, must not be blank
 	 * @param displayName the command display name, must not be blank
 	 * @param description the short command description, must not be blank
 	 * @param category a category, must not be null
 	 * @param arguments the arguments, must not be null
 	 */
-	protected AbstractComplexCmd(String name, String displayName, String description, CmdCategory category, ComplexArgument<?>[] arguments) {
+	protected AbstractLongTypedCmd(String name, String displayName, String description, CmdCategory category, LongTypedArgument<?>[] arguments) {
 		super(name, displayName, description, category);
 
 		Validate.notEmpty(arguments);
@@ -49,7 +49,7 @@ public abstract class AbstractComplexCmd extends AbstractCmd implements ComplexC
 	}
 
 	@Override
-	public ComplexArgument<?>[] getArguments() {
+	public LongTypedArgument<?>[] getArguments() {
 		return this.arguments;
 	}
 

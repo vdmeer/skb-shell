@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package de.vandermeer.shell.commands.simple;
+package de.vandermeer.shell.commands.standard;
 
 import de.vandermeer.shell.commands.AbstractSimpleCmd;
 import de.vandermeer.skb.interfaces.shell.CmdCategory;
@@ -25,13 +25,13 @@ import de.vandermeer.skb.interfaces.shell.CmdCategory;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public class SimpleBye extends AbstractSimpleCmd {
+public class Cmd_Bye extends AbstractSimpleCmd {
 
 	/**
 	 * Creates a new command
 	 * @param category the category.
 	 */
-	public SimpleBye(CmdCategory category) {
+	public Cmd_Bye(CmdCategory category) {
 		super(
 				"bye",
 				"Bye",
@@ -42,7 +42,7 @@ public class SimpleBye extends AbstractSimpleCmd {
 
 	@Override
 	public int executeCommand() {
-		return 2;
+		return 1;
 	}
 
 }

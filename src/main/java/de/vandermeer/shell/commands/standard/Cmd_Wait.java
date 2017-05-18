@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package de.vandermeer.shell.commands.typed;
+package de.vandermeer.shell.commands.standard;
 
 import de.vandermeer.shell.commands.AbstractTypedCmdInteger;
 import de.vandermeer.skb.interfaces.shell.CmdCategory;
@@ -25,14 +25,14 @@ import de.vandermeer.skb.interfaces.shell.CmdCategory;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public class TypedWait extends AbstractTypedCmdInteger {
+public class Cmd_Wait extends AbstractTypedCmdInteger {
 
 	/**
 	 * Creates a new command.
 	 * @param category the category
 	 * @param defaultValue default wait in milliseconds
 	 */
-	public TypedWait(CmdCategory category, Integer defaultValue) {
+	public Cmd_Wait(CmdCategory category, Integer defaultValue) {
 		super(
 				"wait",
 				"Wait",
@@ -40,6 +40,7 @@ public class TypedWait extends AbstractTypedCmdInteger {
 				category,
 				"MS",
 				"time to wait in milliseconds",
+				true,
 				defaultValue
 		);
 		this.setLongDescription("Simply stops the shell and any command execution for the given amount of milli seconds. This command can be used when the shell executes a script to slow down command execution.");

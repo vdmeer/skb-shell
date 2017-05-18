@@ -13,28 +13,28 @@
  * limitations under the License.
  */
 
-package de.vandermeer.shell.commands.simple;
+package de.vandermeer.shell.commands.standard;
 
 import de.vandermeer.shell.commands.AbstractSimpleCmd;
 import de.vandermeer.skb.interfaces.shell.CmdCategory;
 
 /**
- * Command `exit`.
+ * Command `quit`.
  *
  * @author     Sven van der Meer &lt;vdmeer.sven@mykolab.com&gt;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public class SimpleExit extends AbstractSimpleCmd {
+public class Cmd_Quit extends AbstractSimpleCmd {
 
 	/**
 	 * Creates a new command
 	 * @param category the category.
 	 */
-	public SimpleExit(CmdCategory category) {
+	public Cmd_Quit(CmdCategory category) {
 		super(
-				"help",
-				"Help",
+				"quit",
+				"Quit",
 				"Terminates the shell",
 				category
 		);
@@ -42,7 +42,7 @@ public class SimpleExit extends AbstractSimpleCmd {
 
 	@Override
 	public int executeCommand() {
-		return 2;
+		return 1;
 	}
 
 }
