@@ -17,8 +17,8 @@ package de.vandermeer.shell;
 
 import org.apache.commons.lang3.Validate;
 
-import de.vandermeer.skb.interfaces.shell.CommandMultiSet;
-import de.vandermeer.skb.interfaces.shell.CommandSet;
+import de.vandermeer.skb.interfaces.shell.Sh_CommandMultiSet;
+import de.vandermeer.skb.interfaces.shell.Sh_CommandSet;
 import de.vandermeer.skb.interfaces.shell.IsMultiShell;
 
 /**
@@ -34,13 +34,13 @@ public class SkbMultiShell implements IsMultiShell {
 	protected boolean isRunning;
 
 	/** The command multi-set of the shell. */
-	protected final transient CommandMultiSet multiSet;
+	protected final transient Sh_CommandMultiSet multiSet;
 
 	/**
 	 * Creates a new multi-set shell.
 	 * @param multiSet the multi-set for the shell with all commands and basic shell informations: name, display name, version, description
 	 */
-	public SkbMultiShell(CommandMultiSet multiSet){
+	public SkbMultiShell(Sh_CommandMultiSet multiSet){
 		Validate.notNull(multiSet);
 		this.multiSet = multiSet;
 	}
@@ -53,7 +53,7 @@ public class SkbMultiShell implements IsMultiShell {
 	 * @param description the shell (and multi-set) description, must not be blank
 	 */
 	public SkbMultiShell(final String name, final String displayName, final String version, final String description){
-		this.multiSet = CommandMultiSet.create(name, displayName, version, description);
+		this.multiSet = Sh_CommandMultiSet.create(name, displayName, version, description);
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class SkbMultiShell implements IsMultiShell {
 	}
 
 	@Override
-	public CommandMultiSet getCommands() {
+	public Sh_CommandMultiSet getCommands() {
 		return this.multiSet;
 	}
 
@@ -99,7 +99,7 @@ public class SkbMultiShell implements IsMultiShell {
 	 * @return self to allow chaining
 	 */
 	public SkbMultiShell addSet(final String name, final String displayName, final String version, final String description){
-		CommandSet set = CommandSet.create(name, displayName, version, description);
+		Sh_CommandSet set = Sh_CommandSet.create(name, displayName, version, description);
 		this.multiSet.getMultiMap().put(set.getName(), set);
 		return this;
 	}

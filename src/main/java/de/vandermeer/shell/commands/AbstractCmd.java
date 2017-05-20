@@ -17,8 +17,8 @@ package de.vandermeer.shell.commands;
 
 import org.apache.commons.lang3.Validate;
 
-import de.vandermeer.skb.interfaces.shell.CmdBase;
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdBase;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
 
 /**
  * Base for a command.
@@ -27,7 +27,7 @@ import de.vandermeer.skb.interfaces.shell.CmdCategory;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class AbstractCmd implements CmdBase {
+public abstract class AbstractCmd implements Sh_CmdBase {
 
 	/** Command name. */
 	protected final transient String name;
@@ -39,7 +39,7 @@ public abstract class AbstractCmd implements CmdBase {
 	protected final transient String description;
 
 	/** Command category. */
-	protected final transient CmdCategory category;
+	protected final transient Sh_CmdCategory category;
 
 	/** An optional long description. */
 	protected Object longDescription;
@@ -51,7 +51,7 @@ public abstract class AbstractCmd implements CmdBase {
 	 * @param description the command description, must not be blank
 	 * @param category a category, must not be null
 	 */
-	protected AbstractCmd(final String name, final String displayName, final String description, final CmdCategory category){
+	protected AbstractCmd(final String name, final String displayName, final String description, final Sh_CmdCategory category){
 		Validate.notBlank(name);
 		Validate.notBlank(displayName);
 		Validate.notBlank(description);
@@ -92,7 +92,7 @@ public abstract class AbstractCmd implements CmdBase {
 	}
 
 	@Override
-	public CmdCategory getCategory() {
+	public Sh_CmdCategory getCategory() {
 		return this.category;
 	}
 

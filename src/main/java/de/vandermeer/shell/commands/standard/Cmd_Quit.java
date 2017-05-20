@@ -16,7 +16,7 @@
 package de.vandermeer.shell.commands.standard;
 
 import de.vandermeer.shell.commands.AbstractSimpleCmd;
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
 
 /**
  * Command `quit`.
@@ -31,7 +31,7 @@ public class Cmd_Quit extends AbstractSimpleCmd {
 	 * Creates a new command
 	 * @param category the category.
 	 */
-	public Cmd_Quit(CmdCategory category) {
+	public Cmd_Quit(Sh_CmdCategory category) {
 		super(
 				"quit",
 				"Quit",

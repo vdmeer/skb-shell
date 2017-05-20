@@ -23,7 +23,7 @@ import org.apache.commons.lang3.Validate;
 
 import de.vandermeer.skb.interfaces.messages.errors.IsError;
 import de.vandermeer.skb.interfaces.messages.errors.Templates_CliOptions;
-import de.vandermeer.skb.interfaces.shell.ComplexArgument;
+import de.vandermeer.skb.interfaces.shell.Sh_ComplexArgument;
 import de.vandermeer.skb.interfaces.transformers.Object_To_Target;
 
 /**
@@ -33,7 +33,7 @@ import de.vandermeer.skb.interfaces.transformers.Object_To_Target;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class AbstractComplexArg<T> implements ComplexArgument<T> {
+public abstract class AbstractComplexArg<T> implements Sh_ComplexArgument<T> {
 
 	/**
 	 * Creates a new `boolean` argument.
@@ -44,7 +44,7 @@ public abstract class AbstractComplexArg<T> implements ComplexArgument<T> {
 	 * @param defaultValue a default value, null if none required
 	 * @return new argument
 	 */
-	public static ComplexArgument<Boolean> asBoolean(final String name, final String displayName, final String description, final boolean isRequired, final Boolean defaultValue){
+	public static Sh_ComplexArgument<Boolean> asBoolean(final String name, final String displayName, final String description, final boolean isRequired, final Boolean defaultValue){
 		return new AbstractComplexArg<Boolean>(name, displayName, description, isRequired, defaultValue) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -71,7 +71,7 @@ public abstract class AbstractComplexArg<T> implements ComplexArgument<T> {
 	 * @param defaultValue a default value, null if none required
 	 * @return new argument
 	 */
-	public static ComplexArgument<Character> asCharacter(final String name, final String displayName, final String description, final boolean isRequired, final Character defaultValue){
+	public static Sh_ComplexArgument<Character> asCharacter(final String name, final String displayName, final String description, final boolean isRequired, final Character defaultValue){
 		return new AbstractComplexArg<Character>(name, displayName, description, isRequired, defaultValue) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -98,7 +98,7 @@ public abstract class AbstractComplexArg<T> implements ComplexArgument<T> {
 	 * @param defaultValue a default value, null if none required
 	 * @return new argument
 	 */
-	public static ComplexArgument<Double> asDouble(final String name, final String displayName, final String description, final boolean isRequired, final Double defaultValue){
+	public static Sh_ComplexArgument<Double> asDouble(final String name, final String displayName, final String description, final boolean isRequired, final Double defaultValue){
 		return new AbstractComplexArg<Double>(name, displayName, description, isRequired, defaultValue) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -125,7 +125,7 @@ public abstract class AbstractComplexArg<T> implements ComplexArgument<T> {
 	 * @param defaultValue a default value, null if none required
 	 * @return new argument
 	 */
-	public static ComplexArgument<Integer> asInteger(final String name, final String displayName, final String description, final boolean isRequired, final Integer defaultValue){
+	public static Sh_ComplexArgument<Integer> asInteger(final String name, final String displayName, final String description, final boolean isRequired, final Integer defaultValue){
 		return new AbstractComplexArg<Integer>(name, displayName, description, isRequired, defaultValue) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -152,7 +152,7 @@ public abstract class AbstractComplexArg<T> implements ComplexArgument<T> {
 	 * @param defaultValue a default value, null if none required
 	 * @return new argument
 	 */
-	public static ComplexArgument<String> asString(final String name, final String displayName, final String description, final boolean isRequired, final String defaultValue){
+	public static Sh_ComplexArgument<String> asString(final String name, final String displayName, final String description, final boolean isRequired, final String defaultValue){
 		return new AbstractComplexArg<String>(name, displayName, description, isRequired, defaultValue) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -181,7 +181,7 @@ public abstract class AbstractComplexArg<T> implements ComplexArgument<T> {
 	 * @param defaultValue a default value, null if none required
 	 * @return new argument
 	 */
-	public static ComplexArgument<List<String>> asStringList(final String name, final String displayName, final String description, final boolean isRequired, final List<String> defaultValue){
+	public static Sh_ComplexArgument<List<String>> asStringList(final String name, final String displayName, final String description, final boolean isRequired, final List<String> defaultValue){
 		return new AbstractComplexArg<List<String>>(name, displayName, description, isRequired, defaultValue) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -220,7 +220,7 @@ public abstract class AbstractComplexArg<T> implements ComplexArgument<T> {
 	 * @param defaultValue a default value, null if none required
 	 * @return new argument
 	 */
-	public static ComplexArgument<List<Integer>> asIntegerList(final String name, final String displayName, final String description, final boolean isRequired, final List<Integer> defaultValue){
+	public static Sh_ComplexArgument<List<Integer>> asIntegerList(final String name, final String displayName, final String description, final boolean isRequired, final List<Integer> defaultValue){
 		return new AbstractComplexArg<List<Integer>>(name, displayName, description, isRequired, defaultValue) {
 			@Override
 			public IsError setCmdValue(String value) {

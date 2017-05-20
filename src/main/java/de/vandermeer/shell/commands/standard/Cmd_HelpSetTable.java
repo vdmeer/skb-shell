@@ -32,14 +32,14 @@ import de.vandermeer.asciithemes.u8.U8_Grids;
 import de.vandermeer.shell.commands.AbstractTypedCmdString;
 import de.vandermeer.skb.interfaces.MessageType;
 import de.vandermeer.skb.interfaces.console.MessageConsole;
-import de.vandermeer.skb.interfaces.shell.CmdBase;
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
-import de.vandermeer.skb.interfaces.shell.CommandSet;
-import de.vandermeer.skb.interfaces.shell.ComplexArgument;
-import de.vandermeer.skb.interfaces.shell.ComplexCmd;
-import de.vandermeer.skb.interfaces.shell.LongTypedArgument;
-import de.vandermeer.skb.interfaces.shell.LongTypedCmd;
-import de.vandermeer.skb.interfaces.shell.TypedCmd;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdBase;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_CommandSet;
+import de.vandermeer.skb.interfaces.shell.Sh_ComplexArgument;
+import de.vandermeer.skb.interfaces.shell.Sh_ComplexCmd;
+import de.vandermeer.skb.interfaces.shell.Sh_LongTypedArgument;
+import de.vandermeer.skb.interfaces.shell.Sh_LongTypedCmd;
+import de.vandermeer.skb.interfaces.shell.Sh_TypedCmd;
 import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 
 /**
@@ -61,14 +61,14 @@ public class Cmd_HelpSetTable extends AbstractTypedCmdString {
 	protected final transient AT_ColumnWidthCalculator cwc;
 
 	/** Command set for help. */
-	protected final transient CommandSet set;
+	protected final transient Sh_CommandSet set;
 
 	/**
 	 * Creates a new help command with defaults for CWC, grid, and theme.
 	 * @param category the command category, must not be null
 	 * @param set the command set this command is operating on, must not be null
 	 */
-	public Cmd_HelpSetTable(final CmdCategory category, final CommandSet set) {
+	public Cmd_HelpSetTable(final Sh_CmdCategory category, final Sh_CommandSet set) {
 		this(category, set, new CWC_FixedWidth().add(14).add(20).add(70), U8_Grids.borderStrongDoubleLight(), TA_GridThemes.LATEX);
 	}
 
@@ -78,7 +78,7 @@ public class Cmd_HelpSetTable extends AbstractTypedCmdString {
 	 * @param set the command set this command is operating on, must not be null
 	 * @param cwc a width calculator, must not be null, must allow for a 3 column table
 	 */
-	public Cmd_HelpSetTable(final CmdCategory category, final CommandSet set, final AT_ColumnWidthCalculator cwc) {
+	public Cmd_HelpSetTable(final Sh_CmdCategory category, final Sh_CommandSet set, final AT_ColumnWidthCalculator cwc) {
 		this(category, set, cwc, U8_Grids.borderStrongDoubleLight(), TA_GridThemes.LATEX);
 	}
 
@@ -89,7 +89,7 @@ public class Cmd_HelpSetTable extends AbstractTypedCmdString {
 	 * @param cwc a width calculator, must not be null, must allow for a 3 column table
 	 * @param theme a theme for the table, must not be null
 	 */
-	public Cmd_HelpSetTable(final CmdCategory category, final CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_GridThemes theme) {
+	public Cmd_HelpSetTable(final Sh_CmdCategory category, final Sh_CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_GridThemes theme) {
 		this(category, set, cwc, U8_Grids.borderStrongDoubleLight(), theme);
 	}
 
@@ -100,7 +100,7 @@ public class Cmd_HelpSetTable extends AbstractTypedCmdString {
 	 * @param cwc a width calculator, must not be null, must allow for a 3 column table
 	 * @param grid a grid for the table, must not be null
 	 */
-	public Cmd_HelpSetTable(final CmdCategory category, final CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_Grid grid) {
+	public Cmd_HelpSetTable(final Sh_CmdCategory category, final Sh_CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_Grid grid) {
 		this(category, set, cwc, grid, TA_GridThemes.LATEX);
 	}
 
@@ -112,7 +112,7 @@ public class Cmd_HelpSetTable extends AbstractTypedCmdString {
 	 * @param grid a grid for the table, must not be null
 	 * @param theme a theme for the table, must not be null
 	 */
-	public Cmd_HelpSetTable(final CmdCategory category, final CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_Grid grid, final TA_GridThemes theme) {
+	public Cmd_HelpSetTable(final Sh_CmdCategory category, final Sh_CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_Grid grid, final TA_GridThemes theme) {
 		super(
 				"help",
 				"Help",
@@ -147,7 +147,7 @@ public class Cmd_HelpSetTable extends AbstractTypedCmdString {
 		String command = this.getValue();
 		Validate.validState(this.set.hasCommand(command), "unknown command for help: <" + command + ">");
 
-		CmdBase cmdBase = set.getCommand(command);
+		Sh_CmdBase cmdBase = set.getCommand(command);
 		MessageConsole.con(MessageType.INFO, "");
 		MessageConsole.con(MessageType.INFO, "{} - {}", cmdBase.getDisplayName(), cmdBase.getDescription());
 		MessageConsole.con(MessageType.INFO, "command:  {}", cmdBase.getName());
@@ -157,22 +157,22 @@ public class Cmd_HelpSetTable extends AbstractTypedCmdString {
 			MessageConsole.con(MessageType.INFO, "argument: none");
 		}
 		else if(set.getTypedMap().keySet().contains(command)){
-			TypedCmd<?> tc = set.getTypedMap().get(command);
+			Sh_TypedCmd<?> tc = set.getTypedMap().get(command);
 			MessageConsole.con(MessageType.INFO, "argument: {} - {}", tc.getArgumentName(), tc.getArgumentDecription());
 			MessageConsole.con(MessageType.INFO, "- type:          {}", tc.valueType());
 			MessageConsole.con(MessageType.INFO, "- default value: {}", tc.getDefaultValue());
 		}
 		else if(set.getLongTypedMap().keySet().contains(command)){
-			LongTypedCmd ltc = set.getLongTypedMap().get(command);
+			Sh_LongTypedCmd ltc = set.getLongTypedMap().get(command);
 			MessageConsole.con(MessageType.INFO, "arguments:");
-			for(LongTypedArgument<?> arg : ltc.getArguments()){
+			for(Sh_LongTypedArgument<?> arg : ltc.getArguments()){
 				MessageConsole.con(MessageType.INFO, "- {} - {}, type {}", arg.getName(), arg.getDescription(), arg.valueType());
 			}
 		}
 		else if(set.getComplexMap().keySet().contains(command)){
-			ComplexCmd cc = set.getComplexMap().get(command);
+			Sh_ComplexCmd cc = set.getComplexMap().get(command);
 			MessageConsole.con(MessageType.INFO, "arguments:");
-			for(ComplexArgument<?> arg : cc.getArguments()){
+			for(Sh_ComplexArgument<?> arg : cc.getArguments()){
 				MessageConsole.con(MessageType.INFO, "- {} - {}, type {}, default value {}", arg.getName(), arg.getDescription(), arg.valueType(), arg.getDefaultValue());
 			}
 		}
@@ -201,8 +201,8 @@ public class Cmd_HelpSetTable extends AbstractTypedCmdString {
 		at.getContext().setGridTheme(this.theme);
 		at.getRenderer().setCWC(this.cwc);
 
-		TreeMap<String, List<CmdBase>> catMap = new TreeMap<>();
-		for(CmdBase cmd : this.set.sortedList()){
+		TreeMap<String, List<Sh_CmdBase>> catMap = new TreeMap<>();
+		for(Sh_CmdBase cmd : this.set.sortedList()){
 			if(!catMap.containsKey(cmd.getCategory().getName())){
 				catMap.put(cmd.getCategory().getName(), new ArrayList<>());
 			}
@@ -213,7 +213,7 @@ public class Cmd_HelpSetTable extends AbstractTypedCmdString {
 		at.addRow("Category", "Command", "Description");
 		at.addStrongRule();
 		int count = 0;
-		for(Entry<String, List<CmdBase>> entry : catMap.entrySet()){
+		for(Entry<String, List<Sh_CmdBase>> entry : catMap.entrySet()){
 			if(count>0){
 				at.addRule();
 			}

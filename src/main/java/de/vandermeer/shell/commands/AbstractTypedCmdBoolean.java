@@ -20,7 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import de.vandermeer.skb.interfaces.messages.errors.IsError;
 import de.vandermeer.skb.interfaces.messages.errors.Templates_CliOptions;
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
 
 /**
  * A typed command as boolean.
@@ -42,7 +42,7 @@ public abstract class AbstractTypedCmdBoolean extends AbstractTypedCmd<Boolean> 
 	 * @param argRequired true if argument is required, false otherwise
 	 * @param defaultValue command default value, null or blank if not required
 	 */
-	protected AbstractTypedCmdBoolean(String name, String displayName, String description, CmdCategory category, String argumentName, String argumentDescription, boolean argRequired, Boolean defaultValue) {
+	protected AbstractTypedCmdBoolean(String name, String displayName, String description, Sh_CmdCategory category, String argumentName, String argumentDescription, boolean argRequired, Boolean defaultValue) {
 		super(name, displayName, description, category, argumentName, argumentDescription, argRequired, defaultValue);
 	}
 

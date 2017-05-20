@@ -22,7 +22,7 @@ import de.vandermeer.shell.commands.standard.Cmd_HelpSetList;
 import de.vandermeer.shell.commands.standard.Cmd_HelpSetTable;
 import de.vandermeer.shell.commands.standard.Cmd_Script;
 import de.vandermeer.shell.commands.standard.Cmd_Wait;
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
 
 /**
  * Simple interactive test for `script` command.
@@ -35,14 +35,14 @@ public class Test_CmdScript {
 
 	@Test
 	public void test_Command(){
-		CmdCategory cat = CmdCategory.create("test", "Test Category", "for tests");
+		Sh_CmdCategory cat = Sh_CmdCategory.create("test", "Test Category", "for tests");
 		SkbShell shell = new SkbShell("shell", "Test Shell", "1.0", "testing commands");
 
-		shell.addCommand(new Cmd_HelpSetTable( cat, shell.getCommands()));
+		shell.addCommand(new Cmd_HelpSetTable(cat, shell.getCommands()));
 		shell.addCommand(new Cmd_HelpSetList(cat, shell.getCommands()));
 		shell.addCommand(new Cmd_Exit(cat));
 		shell.addCommand(new Cmd_Wait(cat, null));
 		shell.addCommand(new Cmd_Script(cat, shell));
-		shell.runShell();
+//		shell.runShell();
 	}
 }

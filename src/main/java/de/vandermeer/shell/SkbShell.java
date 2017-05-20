@@ -17,7 +17,7 @@ package de.vandermeer.shell;
 
 import org.apache.commons.lang3.Validate;
 
-import de.vandermeer.skb.interfaces.shell.CommandSet;
+import de.vandermeer.skb.interfaces.shell.Sh_CommandSet;
 import de.vandermeer.skb.interfaces.shell.IsSetShell;
 
 /**
@@ -33,13 +33,13 @@ public class SkbShell implements IsSetShell {
 	protected boolean isRunning;
 
 	/** The command set of the shell. */
-	protected final transient CommandSet cmdSet;
+	protected final transient Sh_CommandSet cmdSet;
 
 	/**
 	 * Creates a new shell.
 	 * @param cmdSet the command set with all commands and basic shell informations: name, display name, version, description
 	 */
-	public SkbShell(CommandSet cmdSet){
+	public SkbShell(Sh_CommandSet cmdSet){
 		Validate.notNull(cmdSet);
 		this.cmdSet = cmdSet;
 	}
@@ -52,7 +52,7 @@ public class SkbShell implements IsSetShell {
 	 * @param description the shell (and set) description, must not be blank
 	 */
 	public SkbShell(final String name, final String displayName, final String version, final String description){
-		this.cmdSet = CommandSet.create(name, displayName, version, description);
+		this.cmdSet = Sh_CommandSet.create(name, displayName, version, description);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class SkbShell implements IsSetShell {
 	}
 
 	@Override
-	public CommandSet getCommands() {
+	public Sh_CommandSet getCommands() {
 		return this.cmdSet;
 	}
 

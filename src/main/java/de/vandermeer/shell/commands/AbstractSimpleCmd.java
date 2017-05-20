@@ -15,8 +15,8 @@
 
 package de.vandermeer.shell.commands;
 
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
-import de.vandermeer.skb.interfaces.shell.SimpleCmd;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_SimpleCmd;
 
 /**
  * A simple command.
@@ -25,7 +25,7 @@ import de.vandermeer.skb.interfaces.shell.SimpleCmd;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class AbstractSimpleCmd extends AbstractCmd implements SimpleCmd {
+public abstract class AbstractSimpleCmd extends AbstractCmd implements Sh_SimpleCmd {
 
 	/**
 	 * Creates a new simple command.
@@ -34,7 +34,7 @@ public abstract class AbstractSimpleCmd extends AbstractCmd implements SimpleCmd
 	 * @param description the short description, must not be blank
 	 * @param category a category, must not be null
 	 */
-	protected AbstractSimpleCmd(String name, String displayName, String description, CmdCategory category) {
+	protected AbstractSimpleCmd(String name, String displayName, String description, Sh_CmdCategory category) {
 		super(name, displayName, description, category);
 	}
 

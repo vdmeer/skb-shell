@@ -17,9 +17,9 @@ package de.vandermeer.shell.commands;
 
 import org.apache.commons.lang3.Validate;
 
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
-import de.vandermeer.skb.interfaces.shell.LongTypedArgument;
-import de.vandermeer.skb.interfaces.shell.LongTypedCmd;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_LongTypedArgument;
+import de.vandermeer.skb.interfaces.shell.Sh_LongTypedCmd;
 
 /**
  * Base for a long typed command.
@@ -28,10 +28,10 @@ import de.vandermeer.skb.interfaces.shell.LongTypedCmd;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class AbstractLongTypedCmd extends AbstractCmd implements LongTypedCmd {
+public abstract class AbstractLongTypedCmd extends AbstractCmd implements Sh_LongTypedCmd {
 
 	/** The arguments of the command. */
-	protected final transient LongTypedArgument<?>[] arguments;
+	protected final transient Sh_LongTypedArgument<?>[] arguments;
 
 	/**
 	 * Creates a new long typed command.
@@ -41,7 +41,7 @@ public abstract class AbstractLongTypedCmd extends AbstractCmd implements LongTy
 	 * @param category a category, must not be null
 	 * @param arguments the arguments, must not be null
 	 */
-	protected AbstractLongTypedCmd(String name, String displayName, String description, CmdCategory category, LongTypedArgument<?>[] arguments) {
+	protected AbstractLongTypedCmd(String name, String displayName, String description, Sh_CmdCategory category, Sh_LongTypedArgument<?>[] arguments) {
 		super(name, displayName, description, category);
 
 		Validate.notEmpty(arguments);
@@ -49,7 +49,7 @@ public abstract class AbstractLongTypedCmd extends AbstractCmd implements LongTy
 	}
 
 	@Override
-	public LongTypedArgument<?>[] getArguments() {
+	public Sh_LongTypedArgument<?>[] getArguments() {
 		return this.arguments;
 	}
 

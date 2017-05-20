@@ -17,9 +17,9 @@ package de.vandermeer.shell.commands;
 
 import org.apache.commons.lang3.Validate;
 
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
-import de.vandermeer.skb.interfaces.shell.ComplexArgument;
-import de.vandermeer.skb.interfaces.shell.ComplexCmd;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_ComplexArgument;
+import de.vandermeer.skb.interfaces.shell.Sh_ComplexCmd;
 
 /**
  * Base for a complex command.
@@ -28,10 +28,10 @@ import de.vandermeer.skb.interfaces.shell.ComplexCmd;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class AbstractComplexCmd extends AbstractCmd implements ComplexCmd {
+public abstract class AbstractComplexCmd extends AbstractCmd implements Sh_ComplexCmd {
 
 	/** The arguments of the command. */
-	protected final transient ComplexArgument<?>[] arguments;
+	protected final transient Sh_ComplexArgument<?>[] arguments;
 
 	/**
 	 * Creates a new complex command.
@@ -41,7 +41,7 @@ public abstract class AbstractComplexCmd extends AbstractCmd implements ComplexC
 	 * @param category a category, must not be null
 	 * @param arguments the arguments, must not be null
 	 */
-	protected AbstractComplexCmd(String name, String displayName, String description, CmdCategory category, ComplexArgument<?>[] arguments) {
+	protected AbstractComplexCmd(String name, String displayName, String description, Sh_CmdCategory category, Sh_ComplexArgument<?>[] arguments) {
 		super(name, displayName, description, category);
 
 		Validate.notEmpty(arguments);
@@ -49,7 +49,7 @@ public abstract class AbstractComplexCmd extends AbstractCmd implements ComplexC
 	}
 
 	@Override
-	public ComplexArgument<?>[] getArguments() {
+	public Sh_ComplexArgument<?>[] getArguments() {
 		return this.arguments;
 	}
 

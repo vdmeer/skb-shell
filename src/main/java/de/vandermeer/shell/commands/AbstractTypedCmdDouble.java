@@ -20,7 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import de.vandermeer.skb.interfaces.messages.errors.IsError;
 import de.vandermeer.skb.interfaces.messages.errors.Templates_CliOptions;
 import de.vandermeer.skb.interfaces.messages.errors.Templates_EnvironmentOptions;
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
 
 /**
  * A typed command as double.
@@ -42,7 +42,7 @@ public abstract class AbstractTypedCmdDouble extends AbstractTypedCmd<Double> {
 	 * @param argRequired true if argument is required, false otherwise
 	 * @param defaultValue command default value, null or blank if not required
 	 */
-	protected AbstractTypedCmdDouble(String name, String displayName, String description, CmdCategory category, String argumentName, String argumentDescription, boolean argRequired, Double defaultValue) {
+	protected AbstractTypedCmdDouble(String name, String displayName, String description, Sh_CmdCategory category, String argumentName, String argumentDescription, boolean argRequired, Double defaultValue) {
 		super(name, displayName, description, category, argumentName, argumentDescription, argRequired, defaultValue);
 	}
 

@@ -23,7 +23,7 @@ import org.apache.commons.lang3.Validate;
 
 import de.vandermeer.skb.interfaces.messages.errors.IsError;
 import de.vandermeer.skb.interfaces.messages.errors.Templates_CliOptions;
-import de.vandermeer.skb.interfaces.shell.LongTypedArgument;
+import de.vandermeer.skb.interfaces.shell.Sh_LongTypedArgument;
 import de.vandermeer.skb.interfaces.transformers.Object_To_Target;
 
 /**
@@ -33,7 +33,7 @@ import de.vandermeer.skb.interfaces.transformers.Object_To_Target;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
+public abstract class AbstractLongTypedArg<T> implements Sh_LongTypedArgument<T> {
 
 	/**
 	 * Creates a new `boolean` argument.
@@ -42,7 +42,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param description the argument description, must not be blank
 	 * @return new argument
 	 */
-	public static LongTypedArgument<Boolean> asBoolean(final String name, final String displayName, final String description){
+	public static Sh_LongTypedArgument<Boolean> asBoolean(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<Boolean>(name, displayName, description) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -67,7 +67,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param description the argument description, must not be blank
 	 * @return new argument
 	 */
-	public static LongTypedArgument<Character> asCharacter(final String name, final String displayName, final String description){
+	public static Sh_LongTypedArgument<Character> asCharacter(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<Character>(name, displayName, description) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -92,7 +92,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param description the argument description, must not be blank
 	 * @return new argument
 	 */
-	public static LongTypedArgument<Double> asDouble(final String name, final String displayName, final String description){
+	public static Sh_LongTypedArgument<Double> asDouble(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<Double>(name, displayName, description) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -117,7 +117,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param description the argument description, must not be blank
 	 * @return new argument
 	 */
-	public static LongTypedArgument<Integer> asInteger(final String name, final String displayName, final String description){
+	public static Sh_LongTypedArgument<Integer> asInteger(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<Integer>(name, displayName, description) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -142,7 +142,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param description the argument description, must not be blank
 	 * @return new argument
 	 */
-	public static LongTypedArgument<String> asString(final String name, final String displayName, final String description){
+	public static Sh_LongTypedArgument<String> asString(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<String>(name, displayName, description) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -169,7 +169,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param description the argument description, must not be blank
 	 * @return new argument
 	 */
-	public static LongTypedArgument<List<String>> asStringList(final String name, final String displayName, final String description){
+	public static Sh_LongTypedArgument<List<String>> asStringList(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<List<String>>(name, displayName, description) {
 			@Override
 			public IsError setCmdValue(String value) {
@@ -202,7 +202,7 @@ public abstract class AbstractLongTypedArg<T> implements LongTypedArgument<T> {
 	 * @param description the argument description, must not be blank
 	 * @return new argument
 	 */
-	public static LongTypedArgument<List<Integer>> asIntegerList(final String name, final String displayName, final String description){
+	public static Sh_LongTypedArgument<List<Integer>> asIntegerList(final String name, final String displayName, final String description){
 		return new AbstractLongTypedArg<List<Integer>>(name, displayName, description) {
 			@Override
 			public IsError setCmdValue(String value) {

@@ -15,7 +15,7 @@
 
 package de.vandermeer.shell;
 
-import de.vandermeer.skb.interfaces.shell.CommandMultiSet;
+import de.vandermeer.skb.interfaces.shell.Sh_CommandMultiSet;
 import de.vandermeer.skb.interfaces.shell.IsMultiShellMT;
 
 /**
@@ -37,7 +37,7 @@ public class SkbMultiShell_MT extends SkbMultiShell implements IsMultiShellMT {
 	 * Creates a new multi-threaded shell for a command multi-set with all commands and basic shell informations: name, display name, version, description 
 	 * @param multiSet the underlying multi-set
 	 */
-	public SkbMultiShell_MT(CommandMultiSet multiSet) {
+	public SkbMultiShell_MT(Sh_CommandMultiSet multiSet) {
 		super(multiSet);
 	}
 

@@ -32,9 +32,9 @@ import de.vandermeer.asciithemes.u8.U8_Grids;
 import de.vandermeer.shell.commands.AbstractSimpleCmd;
 import de.vandermeer.skb.interfaces.MessageType;
 import de.vandermeer.skb.interfaces.console.MessageConsole;
-import de.vandermeer.skb.interfaces.shell.CmdBase;
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
-import de.vandermeer.skb.interfaces.shell.CommandSet;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdBase;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_CommandSet;
 import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 
 /**
@@ -56,14 +56,14 @@ public class Cmd_HelpSetList extends AbstractSimpleCmd {
 	protected final transient AT_ColumnWidthCalculator cwc;
 
 	/** Command set for help. */
-	protected final transient CommandSet set;
+	protected final transient Sh_CommandSet set;
 
 	/**
 	 * Creates a new help command with defaults for CWC, grid, and theme.
 	 * @param category the command category, must not be null
 	 * @param set the command set this command is operating on, must not be null
 	 */
-	public Cmd_HelpSetList(final CmdCategory category, final CommandSet set) {
+	public Cmd_HelpSetList(final Sh_CmdCategory category, final Sh_CommandSet set) {
 		this(category, set, new CWC_FixedWidth().add(15).add(70), U8_Grids.borderStrongDoubleLight(), TA_GridThemes.LATEX);
 	}
 
@@ -73,7 +73,7 @@ public class Cmd_HelpSetList extends AbstractSimpleCmd {
 	 * @param set the command set this command is operating on, must not be null
 	 * @param cwc a width calculator, must not be null, must allow for a 2 column table
 	 */
-	public Cmd_HelpSetList(final CmdCategory category, final CommandSet set, final AT_ColumnWidthCalculator cwc) {
+	public Cmd_HelpSetList(final Sh_CmdCategory category, final Sh_CommandSet set, final AT_ColumnWidthCalculator cwc) {
 		this(category, set, cwc, U8_Grids.borderStrongDoubleLight(), TA_GridThemes.LATEX);
 	}
 
@@ -84,7 +84,7 @@ public class Cmd_HelpSetList extends AbstractSimpleCmd {
 	 * @param cwc a width calculator, must not be null, must allow for a 2 column table
 	 * @param theme a theme for the table, must not be null
 	 */
-	public Cmd_HelpSetList(final CmdCategory category, final CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_GridThemes theme) {
+	public Cmd_HelpSetList(final Sh_CmdCategory category, final Sh_CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_GridThemes theme) {
 		this(category, set, cwc, U8_Grids.borderStrongDoubleLight(), theme);
 	}
 
@@ -95,7 +95,7 @@ public class Cmd_HelpSetList extends AbstractSimpleCmd {
 	 * @param cwc a width calculator, must not be null, must allow for a 2 column table
 	 * @param grid a grid for the table, must not be null
 	 */
-	public Cmd_HelpSetList(final CmdCategory category, final CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_Grid grid) {
+	public Cmd_HelpSetList(final Sh_CmdCategory category, final Sh_CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_Grid grid) {
 		this(category, set, cwc, grid, TA_GridThemes.LATEX);
 	}
 
@@ -107,7 +107,7 @@ public class Cmd_HelpSetList extends AbstractSimpleCmd {
 	 * @param grid a grid for the table, must not be null
 	 * @param theme a theme for the table, must not be null
 	 */
-	public Cmd_HelpSetList(final CmdCategory category, final CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_Grid grid, final TA_GridThemes theme) {
+	public Cmd_HelpSetList(final Sh_CmdCategory category, final Sh_CommandSet set, final AT_ColumnWidthCalculator cwc, final TA_Grid grid, final TA_GridThemes theme) {
 		super(
 				"help-ls",
 				"Help as list",
@@ -133,7 +133,7 @@ public class Cmd_HelpSetList extends AbstractSimpleCmd {
 		at.getRenderer().setCWC(this.cwc);
 
 		TreeMap<String, List<String>> catMap = new TreeMap<>();
-		for(CmdBase cmd : this.set.sortedList()){
+		for(Sh_CmdBase cmd : this.set.sortedList()){
 			if(!catMap.containsKey(cmd.getCategory().getName())){
 				catMap.put(cmd.getCategory().getName(), new ArrayList<>());
 			}

@@ -15,7 +15,7 @@
 
 package de.vandermeer.shell;
 
-import de.vandermeer.skb.interfaces.shell.CommandSet;
+import de.vandermeer.skb.interfaces.shell.Sh_CommandSet;
 import de.vandermeer.skb.interfaces.shell.IsSetShellMT;
 
 /**
@@ -37,7 +37,7 @@ public class SkbShell_MT extends SkbShell implements IsSetShellMT {
 	 * Creates a new multi-threaded shell.
 	 * @param cmdSet the command set with all commands and basic shell informations: name, display name, version, description
 	 */
-	public SkbShell_MT(CommandSet cmdSet) {
+	public SkbShell_MT(Sh_CommandSet cmdSet) {
 		super(cmdSet);
 	}
 

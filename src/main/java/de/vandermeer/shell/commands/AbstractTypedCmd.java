@@ -17,8 +17,8 @@ package de.vandermeer.shell.commands;
 
 import org.apache.commons.lang3.Validate;
 
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
-import de.vandermeer.skb.interfaces.shell.TypedCmd;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_TypedCmd;
 
 /**
  * A typed command.
@@ -27,7 +27,7 @@ import de.vandermeer.skb.interfaces.shell.TypedCmd;
  * @version    v0.2.0 build 170404 (04-Apr-17) for Java 1.8
  * @since      v0.0.1
  */
-public abstract class AbstractTypedCmd<T> extends AbstractCmd implements TypedCmd<T> {
+public abstract class AbstractTypedCmd<T> extends AbstractCmd implements Sh_TypedCmd<T> {
 
 	/** Argument name. */
 	protected final transient String argumentName;
@@ -55,7 +55,7 @@ public abstract class AbstractTypedCmd<T> extends AbstractCmd implements TypedCm
 	 * @param argRequired true if argument is required, false otherwise
 	 * @param defaultValue a default value, null if not required
 	 */
-	protected AbstractTypedCmd(final String name, final String displayName, final String description, final CmdCategory category, final String argumentName, final String argumentDescription, final boolean argRequired, final T defaultValue) {
+	protected AbstractTypedCmd(final String name, final String displayName, final String description, final Sh_CmdCategory category, final String argumentName, final String argumentDescription, final boolean argRequired, final T defaultValue) {
 		super(name, displayName, description, category);
 
 		Validate.notBlank(argumentName);

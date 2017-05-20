@@ -16,7 +16,7 @@
 package de.vandermeer.shell.commands.standard;
 
 import de.vandermeer.shell.commands.AbstractSimpleCmd;
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
 
 /**
  * Command `bye`.
@@ -31,7 +31,7 @@ public class Cmd_Bye extends AbstractSimpleCmd {
 	 * Creates a new command
 	 * @param category the category.
 	 */
-	public Cmd_Bye(CmdCategory category) {
+	public Cmd_Bye(Sh_CmdCategory category) {
 		super(
 				"bye",
 				"Bye",

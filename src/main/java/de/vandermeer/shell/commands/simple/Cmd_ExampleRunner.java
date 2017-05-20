@@ -18,7 +18,7 @@ package de.vandermeer.shell.commands.simple;
 import de.vandermeer.shell.commands.AbstractSimpleCmd;
 import de.vandermeer.skb.interfaces.examples.StandardExampleAsCmd;
 import de.vandermeer.skb.interfaces.examples.StandardExampleRunner;
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
 
 /**
  * A command that runs an example in a shell using the standard example API.
@@ -37,7 +37,7 @@ public class Cmd_ExampleRunner extends AbstractSimpleCmd {
 	 * @param example the example to run
 	 * @param category the category.
 	 */
-	public Cmd_ExampleRunner(StandardExampleAsCmd example, CmdCategory category) {
+	public Cmd_ExampleRunner(StandardExampleAsCmd example, Sh_CmdCategory category) {
 		super(
 				example.getName(),
 				example.getDisplayName(),

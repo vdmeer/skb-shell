@@ -18,7 +18,7 @@ package de.vandermeer.shell.commands.standard;
 import de.vandermeer.shell.commands.AbstractTypedCmdInteger;
 import de.vandermeer.skb.interfaces.MessageType;
 import de.vandermeer.skb.interfaces.console.MessageConsole;
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
 
 /**
  * Command `wait`.
@@ -34,7 +34,7 @@ public class Cmd_Wait extends AbstractTypedCmdInteger {
 	 * @param category the category
 	 * @param defaultValue default wait in milliseconds
 	 */
-	public Cmd_Wait(CmdCategory category, Integer defaultValue) {
+	public Cmd_Wait(Sh_CmdCategory category, Integer defaultValue) {
 		super(
 				"wait",
 				"Wait",

@@ -30,9 +30,9 @@ import de.vandermeer.skb.interfaces.fidibus.directories.APIOWalker;
 import de.vandermeer.skb.interfaces.fidibus.files.FileSource;
 import de.vandermeer.skb.interfaces.fidibus.files.StringFileLoader;
 import de.vandermeer.skb.interfaces.render.DoesRender;
-import de.vandermeer.skb.interfaces.shell.CmdCategory;
+import de.vandermeer.skb.interfaces.shell.Sh_CmdCategory;
 import de.vandermeer.skb.interfaces.shell.IsSetShell;
-import de.vandermeer.skb.interfaces.shell.LongTypedArgument;
+import de.vandermeer.skb.interfaces.shell.Sh_LongTypedArgument;
 
 /**
  * Command `script`.
@@ -50,10 +50,10 @@ public class Cmd_Script extends AbstractLongTypedCmd {
 	public static final String SCRIPT_DOC_COMMENT = "//**";
 
 	/** The action argument. */
-	public static final LongTypedArgument<String> action = AbstractLongTypedArg.asString("action", "Action", "The requested action for script, one of: ls, info, run");
+	public static final Sh_LongTypedArgument<String> action = AbstractLongTypedArg.asString("action", "Action", "The requested action for script, one of: ls, info, run");
 
 	/** The action-arg argument. */
-	public static final LongTypedArgument<String> actionArg = AbstractLongTypedArg.asString("action-arg", "Action argument", "The argument for the script action: <directory> for ls, <filename> for run and info");
+	public static final Sh_LongTypedArgument<String> actionArg = AbstractLongTypedArg.asString("action-arg", "Action argument", "The argument for the script action: <directory> for ls, <filename> for run and info");
 
 	/** A shell to run commands in. */
 	private final IsSetShell shell;
@@ -66,13 +66,13 @@ public class Cmd_Script extends AbstractLongTypedCmd {
 	 * @param category the command category, must not be null
 	 * @param shell a shell to run a command, must not be null
 	 */
-	public Cmd_Script(CmdCategory category, IsSetShell shell) {
+	public Cmd_Script(Sh_CmdCategory category, IsSetShell shell) {
 		super(
 				"script",
 				"Script",
 				"collection of actions for scripts, e.g.: list, info, run",
 				category,
-				new LongTypedArgument<?>[]{action, actionArg}
+				new Sh_LongTypedArgument<?>[]{action, actionArg}
 		);
 		Validate.notNull(shell);
 		this.shell = shell;
